@@ -1,6 +1,12 @@
 
 # Changelog
 
+## Unreleased
+
+### Changes
+
+- FixMath: Add F32Vec2.Cross() and F64Vec2.Cross() for computing the 2D scalar cross product.
+
 ## 0.3 (2022-03-26)
 
 ### Changes

@@ -145,6 +145,7 @@ namespace FixMath
         public static F32Vec2 NormalizeFastest(F32Vec2 a) { F32 ooLen = F32.FromRaw((int)(Fixed64.RSqrtFastest((long)a.RawX * (long)a.RawX + (long)a.RawY * (long)a.RawY) >> 16)); return ooLen * a; }
 
         public static F32 Dot(F32Vec2 a, F32Vec2 b) { return F32.FromRaw(Fixed32.Mul(a.RawX, b.RawX) + Fixed32.Mul(a.RawY, b.RawY)); }
+        public static F32 Cross(F32Vec2 a, F32Vec2 b) { return F32.FromRaw(Fixed32.Mul(a.RawX, b.RawY) - Fixed32.Mul(a.RawY, b.RawX)); }
         public static F32 Distance(F32Vec2 a, F32Vec2 b) { return Length(a - b); }
         public static F32 DistanceFast(F32Vec2 a, F32Vec2 b) { return LengthFast(a - b); }
         public static F32 DistanceFastest(F32Vec2 a, F32Vec2 b) { return LengthFastest(a - b); }

@@ -144,6 +144,7 @@ namespace FixMath
         public static F64Vec2 NormalizeFastest(F64Vec2 a) { F64 ooLen = F64.FromRaw(Fixed64.RSqrtFastest(Fixed64.Mul(a.RawX, a.RawX) + Fixed64.Mul(a.RawY, a.RawY))); return ooLen * a; }
 
         public static F64 Dot(F64Vec2 a, F64Vec2 b) { return F64.FromRaw(Fixed64.Mul(a.RawX, b.RawX) + Fixed64.Mul(a.RawY, b.RawY)); }
+        public static F64 Cross(F64Vec2 a, F64Vec2 b) { return F64.FromRaw(Fixed64.Mul(a.RawX, b.RawY) - Fixed64.Mul(a.RawY, b.RawX)); }
         public static F64 Distance(F64Vec2 a, F64Vec2 b) { return Length(a - b); }
         public static F64 DistanceFast(F64Vec2 a, F64Vec2 b) { return LengthFast(a - b); }
         public static F64 DistanceFastest(F64Vec2 a, F64Vec2 b) { return LengthFastest(a - b); }

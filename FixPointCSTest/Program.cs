@@ -1516,7 +1516,7 @@ namespace FixPointCSTest
         static void CheckEqual(string op, F64 result, F64 expected)
         {
             if (result != expected)
-                Console.WriteLine("FAIL: {0} returned {1], expecting {2}", op, result, expected);
+                Console.WriteLine("FAIL: {0} returned {1}, expecting {2}", op, result, expected);
         }
 
         static void UnitTests()
@@ -1550,6 +1550,22 @@ namespace FixPointCSTest
             CheckEqual("F64.PowFastest(0, 1)", F64.PowFastest(F64.Zero, F64.One), F64.Zero);
             CheckEqual("F64.PowFastest(1, 0)", F64.PowFastest(F64.One, F64.Zero), F64.One);
             CheckEqual("F64.PowFastest(pi, 0)", F64.PowFastest(F64.Pi, F64.Zero), F64.One);
+
+            // F32Vec2.Cross(): 2D scalar cross product (a.x*b.y - a.y*b.x)
+            CheckEqual("F32Vec2.Cross(right, up)", F32Vec2.Cross(F32Vec2.Right, F32Vec2.Up), F32.One);          // +X cross +Y is positive
+            CheckEqual("F32Vec2.Cross(up, right)", F32Vec2.Cross(F32Vec2.Up, F32Vec2.Right), F32.Neg1);         // anti-commutative
+            CheckEqual("F32Vec2.Cross(right, right)", F32Vec2.Cross(F32Vec2.Right, F32Vec2.Right), F32.Zero);   // parallel -> zero
+            CheckEqual("F32Vec2.Cross(collinear)", F32Vec2.Cross(F32Vec2.FromInt(3, 4), F32Vec2.FromInt(6, 8)), F32.Zero);
+            CheckEqual("F32Vec2.Cross(2,3 / 4,5)", F32Vec2.Cross(F32Vec2.FromInt(2, 3), F32Vec2.FromInt(4, 5)), F32.FromInt(-2));
+            CheckEqual("F32Vec2.Cross(fractional)", F32Vec2.Cross(F32Vec2.FromDouble(0.5, 0.5), F32Vec2.FromDouble(-0.5, 0.5)), F32.FromDouble(0.5));
+
+            // F64Vec2.Cross(): 2D scalar cross product (a.x*b.y - a.y*b.x)
+            CheckEqual("F64Vec2.Cross(right, up)", F64Vec2.Cross(F64Vec2.Right, F64Vec2.Up), F64.One);          // +X cross +Y is positive
+            CheckEqual("F64Vec2.Cross(up, right)", F64Vec2.Cross(F64Vec2.Up, F64Vec2.Right), F64.Neg1);         // anti-commutative
+            CheckEqual("F64Vec2.Cross(right, right)", F64Vec2.Cross(F64Vec2.Right, F64Vec2.Right), F64.Zero);   // parallel -> zero
+            CheckEqual("F64Vec2.Cross(collinear)", F64Vec2.Cross(F64Vec2.FromInt(3, 4), F64Vec2.FromInt(6, 8)), F64.Zero);
+            CheckEqual("F64Vec2.Cross(2,3 / 4,5)", F64Vec2.Cross(F64Vec2.FromInt(2, 3), F64Vec2.FromInt(4, 5)), F64.FromInt(-2));
+            CheckEqual("F64Vec2.Cross(fractional)", F64Vec2.Cross(F64Vec2.FromDouble(0.5, 0.5), F64Vec2.FromDouble(-0.5, 0.5)), F64.FromDouble(0.5));
         }
 
         static void TestOperations(string testFilter)
